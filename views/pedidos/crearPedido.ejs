@@ -1,0 +1,148 @@
+
+<%- include('../partials/headerPedido.ejs'); %>
+
+<%- include('../partials/flash.ejs'); %>
+
+<div class="container">
+
+    <a href="/pedidos/pedidos-repartidor">Atras</a>
+
+    <div class="h4">Armar Pedido</div>
+
+    <div class="row justify-content-between ">
+        <div class="col-9">
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option selected>Elegir cliente</option>
+                <% for( let clientes of clientesActuales ) { %>
+                  <option value="<%= clientes._id %>" ><%= clientes.nombreLocal %></option>
+                <% } %>
+              </select>
+        </div>
+        <div class="col-3 px-2">
+            <a class="btn btn-outline-success" href="/clientes/agregar-cliente">Agregar+</a>
+        </div>
+    </div>
+    <div class="container">
+
+    
+      <form id="formBuscarPedidos" class="row justify-content-between align-items-center px-1">
+        <div class="col-10">
+
+            <input class="form-control" placeholder="Tap para buscar" type="search" name="inputIrBuscar" id="inputIrBuscar">
+          
+          </div>
+          <div class="col-2 d-flex justify-content-around align-items-center ">
+               <button id="lupaBusqueda" class=" btn">
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>          
+
+          </button>
+          <div id="eliminarProductos" class="">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+  <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5ZM11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H2.506a.58.58 0 0 0-.01 0H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-.995a.59.59 0 0 0-.01 0H11Zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5h9.916Zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47ZM8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5Z"/>
+</svg>
+          </div>
+          </div>
+       
+        </form>
+        <div id="displayProductos" class="mt-2">
+
+          <!-- <div class=" row mb-1 border border-info  ">
+            <div class="col-9 d-flex justify-content-between text-center">
+              <div class="">
+                nombres producto
+              </div>
+              <div class="">
+                marca producto
+              </div>
+              <div class="">
+                precio mayorista
+              </div>
+            </div>
+              <div class="col-3 cantidad d-flex  justify-content-between align-items-center ">
+                <div>+</div>
+                <div class="">0</div>
+                <div>-</div>
+              </div>
+            </div> -->
+            
+        </div>
+          
+
+    
+
+    
+  </div>
+        <!-- <div class="row justify-content-end p-2 mt-3">
+          <div class="col-3 text-center">
+            <p>
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option selected> ' </option>
+                <option value="1">Precio</option>
+                <option value="2">Cantidad</option>
+              </select>
+              
+            </p>
+        </div>
+        </div> -->
+       
+ 
+    <!-- display de busqueda de productos -->
+<div class="container-fluid">
+
+  <div class="d-flex justify-content-between p-1">
+
+
+  </div>
+</div>
+  
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Acciones</th>
+            <th scope="col">Productos</th>
+
+            <th scope="col">Cantidad</th>
+
+            <th scope="col">Precio</th>
+
+            
+          </tr>
+        </thead>
+        <tbody id="tableParaProductosP">
+
+          <tr>
+            <td>3,000</td>
+            <td>3,000</td>
+
+            <td>3,000</td>
+
+            <td>3,000</td>
+
+            <td>3,000</td>
+
+            
+        </tr>
+          
+        </tbody>
+      </table>
+
+
+
+      <div class="row text-center">
+      
+        <div id="eliminarProductosIndividuales" class="col-sm-6">
+          <p >Eliminar producto</p>
+        </div>
+        <div class="col-sm-6">
+          <p>TOTAL: $0</p>
+        </div>
+      </div>
+
+      <div class="finalizar text-end ">
+        <p  class="">Finalizar</p>
+      </div>
+    </div>
+<%- include('../partials/footerPedido.ejs'); %>
